@@ -64,21 +64,46 @@
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
     let totYears = inventors.reduce((accm, val) => accm + (val.passed - val.year), 0);
-    console.log(totYears);
+    // console.log(totYears);
+
 
     // 5. Sort the inventors by years lived
+    let lifeSpan = inventors.sort((a,b) => {
+      // return (a.passed - a.year) - (b.passed - b.year); // youngest to oldest
+      return (b.passed - b.year) - (a.passed - a.year); 
+    })
+    // console.table(lifeSpan);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // const noLst = document.querySelector(".mw-category");
+    // // const lisT = noLst.querySelectorAll("a"); // NodeList
+    // const lisT = Array.from(noLst.querySelectorAll("a"));
+    // // const de = lisT.map(item => item.textContent); // Only maps
+    // const de = lisT.map(item => item.textContent).filter(item => item.includes("de")); // does everything
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alphaPeople = people.sort((lastOne, NextOne) => {
+      const [aLast, aFirst] = lastOne.split(", ");  // assigning 2 variables
+      const [bLast, bFirst] = NextOne.split(", ");  // assigning 2 variables
+      return aLast > bLast ? 1 : -1 // correct order
+      // return aLast > bLast ? -1 : 1; // if aL > bL return -1 else return 1 (Ternary Operator) (reverse order)
+    })
+    // console.log(alphaPeople)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const dataSum = data.reduce((accm, val) => {
+      if(!accm[val]){
+        accm[val] = 0;
+      }
+      accm[val]++;
+      return accm;
+    },{})
+    console.log(dataSum);
   </script>
 </body>
 </html>
